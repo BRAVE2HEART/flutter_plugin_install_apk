@@ -15,6 +15,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String _info ="NO";
 
   @override
   void initState() {
@@ -28,6 +29,8 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       platformVersion = await FlutterPluginInstallApk.platformVersion;
+      _info=await FlutterPluginInstallApk.installApk("filePath");
+
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -50,7 +53,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Running on: $_platformVersion\n'+"_info:"+_info),
         ),
       ),
     );

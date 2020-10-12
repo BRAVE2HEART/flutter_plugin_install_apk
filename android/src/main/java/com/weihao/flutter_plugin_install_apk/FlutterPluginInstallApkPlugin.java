@@ -17,6 +17,15 @@ public class FlutterPluginInstallApkPlugin implements FlutterPlugin, MethodCallH
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
 
+   Registrar registrar;
+  public FlutterPluginInstallApkPlugin(Registrar registrar) {
+    this.registrar = registrar;
+  }
+
+  public FlutterPluginInstallApkPlugin() {
+
+  }
+
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutter_plugin_install_apk");
@@ -34,13 +43,16 @@ public class FlutterPluginInstallApkPlugin implements FlutterPlugin, MethodCallH
   // in the same class.
   public static void registerWith(Registrar registrar) {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_plugin_install_apk");
-    channel.setMethodCallHandler(new FlutterPluginInstallApkPlugin());
+    channel.setMethodCallHandler(new FlutterPluginInstallApkPlugin(registrar));
   }
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
+    } else if(call.method.equals("installApk")){
+      Utils.installAPK(registrar.context(),"");
+      result.success("chenggongle");
     } else {
       result.notImplemented();
     }
