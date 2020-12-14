@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       platformVersion = await FlutterPluginInstallApk.platformVersion;
-      _info=await FlutterPluginInstallApk.installApk("filePath");
+      _info=await FlutterPluginInstallApk.installApk("/storage/emulated/0/Android/data/com.zlgmcu.canfd_blue/files/zlg_canfdblue_1.0.1.apk");
 
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';

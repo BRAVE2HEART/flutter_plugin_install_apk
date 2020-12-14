@@ -12,16 +12,5 @@ public class MainActivity extends FlutterActivity {
 
     private static final String CHANNEL = "samples.flutter.io/battery";
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        new MethodChannel(getFlutterEngine().getDartExecutor(), CHANNEL).setMethodCallHandler(
-                new MethodChannel.MethodCallHandler() {
-                    @Override
-                    public void onMethodCall(MethodCall call, MethodChannel.Result result) {
-                        // TODO
-                    }
-                });
-    }
 }
 
